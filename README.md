@@ -6,7 +6,7 @@
 <!-- no máximo 5 alunos -->
 
 1. RA - nome - responsabilidade
-2. RA - nome - responsabilidade
+2. 10427415 - Guilherme Silva Dias - responsabilidade
 3. 10420414 - Raffael Esteves - responsabilidade
 
 
