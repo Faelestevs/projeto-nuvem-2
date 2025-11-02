@@ -1,7 +1,7 @@
 services:
   backend:
     build: . # Construindo a imagem a partir do Dockerfile na raiz do diretório
-    container_name: webapp # Nome do container
+    container_name: flashcard # Nome do container
     ports:
       - "25000:25000" # Mapeando a porta 25000 do container para a porta 25000 da máquina host
     environment: # Variáveis de ambiente para configuração do banco de dados passadas via terminal
