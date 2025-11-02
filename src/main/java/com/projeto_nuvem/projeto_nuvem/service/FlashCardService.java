@@ -17,21 +17,15 @@
         }
 
         public List<FlashCard> getFlashCardsBySubject(String subject) {
-            return flashCardRepository.findBySubject(subject)
-                    .map(List::of)
-                    .orElse(List.of());
+            return flashCardRepository.findBySubject(subject);
         }
 
         public List<FlashCard> getFlashCardsByCategory(String category) {
-            return flashCardRepository.findByCategory(category)
-                    .map(List::of)
-                    .orElse(List.of());
+            return flashCardRepository.findByCategory(category);
         }
 
         public List<FlashCard> getFlashCardsByDifficulty(String difficulty) {
-            return flashCardRepository.findByDifficulty(difficulty)
-                    .map(List::of)
-                    .orElse(List.of());
+            return flashCardRepository.findByDifficulty(difficulty);
         }
 
         public FlashCard createFlashCard(FlashCard flashCard) {
