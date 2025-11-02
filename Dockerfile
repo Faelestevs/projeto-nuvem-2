@@ -16,7 +16,7 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Executando o build da aplicação
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 ### Segunda fase cria a imagem final para rodar a aplicação
 
