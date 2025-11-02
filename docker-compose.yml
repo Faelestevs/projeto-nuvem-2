@@ -3,7 +3,7 @@ services:
     build: . # Construindo a imagem a partir do Dockerfile na raiz do diretório
     container_name: flashcard # Nome do container
     ports:
-      - "25000:25000" # Mapeando a porta 25000 do container para a porta 25000 da máquina host
+      - "8080:8080" # Mapeando a porta 8080 do container para a porta 8080 da máquina host
     environment: # Variáveis de ambiente para configuração do banco de dados passadas via terminal
       - DB_URL=${DB_URL} # URL do banco de dados
       - DB_USER=${DB_USER} # Usuário do banco de dados

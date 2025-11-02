@@ -29,8 +29,8 @@ WORKDIR /app
 # Copia APENAS o arquivo .jar gerado no estágio anterior e nomeando como app.jar
 COPY --from=builder /app/target/projeto-nuvem-0.0.1-SNAPSHOT.jar app.jar
 
-# Informa ao docker para escutar a porta 25000
-EXPOSE 25000
+# Informa ao docker para escutar a porta 8080
+EXPOSE 8080
 
 # Comandos para iniciar a aplicação
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
