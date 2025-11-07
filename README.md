@@ -3,31 +3,46 @@
 > CRUD simples + API Gateway + Lambda /report + RDS + CI/CD
 
 **Grupo**:
-<!-- no máximo 5 alunos -->
 
-1. 10403760 - Anderson Correa Nicodemo - responsabilidade
-2. 10427415 - Guilherme Silva Dias - responsabilidade
-3. 10420414 - Raffael Esteves - responsabilidade
+1. 10403760 - Anderson Correa Nicodemo - Lambda, Testes e Documentação
+2. 10427415 - Guilherme Silva Dias - Pipeline Jenkins
+3. 10420414 - Raffael Esteves - Docker, VPC, EC2, RDS e API Gateway
 
 
 ## 1. Visão geral
-<!-- Descreva rapidamente o domínio escolhido, por que foi selecionado e o que o CRUD faz. -->
+
+Para a elaboração deste projeto escolhemos fazer um API REST de Flashcards, por se tratar de um objeto de estudos muito utilizado por nós e achamos interessante aplicá-lo em nosso projeto devido aos atributos diferentes que ele pode conter para ser criado nas requisições HTTP. Com isso, nosso API REST é capaz de realizar operações de consulta simples e com parâmetros, criação, atualização e exclusão de objetos flashcards do banco de dados.
 
 ## 2. Arquitetura
 
-![Diagrama](docs/arquitetura.png)
+![alt text](diagrama-projeto-nuvem.png)
 
 | Camada | Serviço | Descrição |
 |--------|---------|-----------|
-| Backend | ECS Fargate (ou EC2 + Docker) | API REST Node/Spring/… |
-| Banco   | Amazon RDS              | PostgreSQL / MySQL em subnet privada |
-| Gateway | Amazon API Gateway      | Rotas CRUD → ECS · `/report` → Lambda |
+| Backend | EC2 + Docker | API REST Java e Springboot |
+| Banco   | Amazon RDS              | PostgreSQL em subnet privada |
+| Gateway | Amazon API Gateway      | Rotas CRUD → EC2 · `/report` → Lambda |
 | Função  | AWS Lambda              | Consome a API, gera estatísticas JSON |
-| CI/CD   | CodePipeline + GitHub   | push → build → ECR → deploy |
+| CI/CD   | Jenkins   | push → jenkins → build → deploy |
 
 ## 3. Como rodar localmente
 
 ```bash
-cp .env.example .env         # configure variáveis
-docker compose up --build
-# API em http://localhost:3000
+# Com as instâncias EC2 executando
+# Acessar a instância do API REST ou do Jenkins
+ssh -i ./keys/cloud-key.pem ec2-user@<ip-publico>
+
+# Na instância API REST
+cd /projeto-nuvem
+
+# Realiza o build e executa a API na porta 8080
+docker compose up --build -d
+
+
+# Na instância do Jenkins
+# Realiza a pipeline, o build e executa a API na porta 8080
+sudo service jenkins start
+
+# URL da API → http://35.170.95.1:8080/api/flashcards
+# URL do Jenkins → http://3.217.176.0:8080
+
