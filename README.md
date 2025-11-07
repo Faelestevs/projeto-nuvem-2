@@ -13,6 +13,18 @@
 
 Para a elaboração deste projeto escolhemos fazer um API REST de Flashcards, por se tratar de um objeto de estudos muito utilizado por nós e achamos interessante aplicá-lo em nosso projeto devido aos atributos diferentes que ele pode conter para ser criado nas requisições HTTP. Com isso, nosso API REST é capaz de realizar operações de consulta simples e com parâmetros, criação, atualização e exclusão de objetos flashcards do banco de dados.
 
+
+### Estrutura JSON de um Flashcard
+```bash
+{
+    "question": "Uma pergunta",
+    "answer": "Uma resposta",
+    "subject": "Serviços em nuvem",
+    "difficulty": "Média",
+    "category": "Docker"
+}
+```
+
 ## 2. Arquitetura
 
 ![alt text](diagrama-projeto-nuvem.png)
@@ -25,7 +37,7 @@ Para a elaboração deste projeto escolhemos fazer um API REST de Flashcards, po
 | Função  | AWS Lambda              | Consome a API, gera estatísticas JSON |
 | CI/CD   | Jenkins   | push → jenkins → build → deploy |
 
-## 3. Como rodar localmente
+## 3. Como rodar na EC2
 
 ```bash
 # Com as instâncias EC2 executando
@@ -45,4 +57,23 @@ sudo service jenkins start
 
 # URL da API → http://35.170.95.1:8080/api/flashcards
 # URL do Jenkins → http://3.217.176.0:8080
+```
+
+## 4. Como rodar localmente
+
+```bash
+# Clonando o repositório do Github
+git clone https://github.com/Faelestevs/projeto-nuvem-2
+
+# Configure as variáveis de ambiente
+cp .env.example .env  
+
+# Realize o build da aplicação
+mvn clean install
+
+# Execute a aplicação 
+mvn spring-boot:run
+
+# Aplicação executa: http://localhost:8080/api/flashcards
+```
 
