@@ -27,7 +27,7 @@ Para a elaboração deste projeto escolhemos fazer um API REST de Flashcards, po
 
 ## 2. Arquitetura
 
-![alt text](diagrama-projeto-nuvem.png)
+![alt text](docs/diagrama-nuvem.png)
 
 | Camada | Serviço | Descrição |
 |--------|---------|-----------|
@@ -35,7 +35,7 @@ Para a elaboração deste projeto escolhemos fazer um API REST de Flashcards, po
 | Banco   | Amazon RDS              | PostgreSQL em subnet privada |
 | Gateway | Amazon API Gateway      | Rotas CRUD → EC2 · `/report` → Lambda |
 | Função  | AWS Lambda              | Consome a API, gera estatísticas JSON |
-| CI/CD   | Jenkins   | push → jenkins → build → deploy |
+| CI/CD   | Jenkins   | push → ECR → Jenkins → build → deploy |
 
 ## 3. Como rodar na EC2
 
